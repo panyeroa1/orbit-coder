@@ -424,7 +424,7 @@ referencing==0.36.2
     # via
     #   jsonschema
     #   jsonschema-specifications
-regex==2025.11.3
+regex==2026.1.15
     # via
     #   tiktoken
     #   transformers
