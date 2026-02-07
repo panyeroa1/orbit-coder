@@ -580,7 +580,7 @@ trove-classifiers==2025.12.1.14
     # via hatchling
 types-beautifulsoup4==4.12.0.3
     # via onyx
-types-html5lib==1.1.11.13
+types-html5lib==1.1.11.20251117
     # via
     #   onyx
     #   types-beautifulsoup4
