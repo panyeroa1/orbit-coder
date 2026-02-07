@@ -1386,9 +1386,32 @@ async def double_check_user(
     if allow_anonymous_access:
         return get_anonymous_user()
 
-    raise BasicAuthenticationError(
-        detail="Access denied. User is not authenticated.",
+    # OPEN ACCESS MODIFICATION: Return default admin user if no auth is present
+    return get_default_open_access_user()
+    
+    # Original logic commented out:
+    # raise BasicAuthenticationError(
+    #     detail="Access denied. User is not authenticated.",
+    # )
+
+
+def get_default_open_access_user() -> User:
+    """Create default admin user for open access mode."""
+    # Use a fixed UUID for consistent identity
+    OPEN_ACCESS_USER_UUID = "00000000-0000-0000-0000-000000000001"
+    OPEN_ACCESS_USER_EMAIL = "admin@eburon.ai"
+    
+    user = User(
+        id=uuid.UUID(OPEN_ACCESS_USER_UUID),
+        email=OPEN_ACCESS_USER_EMAIL,
+        hashed_password="",
+        is_active=True,
+        is_verified=True,
+        is_superuser=True,
+        role=UserRole.ADMIN,
+        use_memories=True,
     )
+    return user
 
 
 async def current_user_with_expired_token(

@@ -15,51 +15,65 @@ export interface AuthTypeMetadata {
 }
 
 export const getAuthTypeMetadataSS = async (): Promise<AuthTypeMetadata> => {
-  const res = await fetch(buildUrl("/auth/type"));
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  try {
+    const res = await fetch(buildUrl("/auth/type"));
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
 
-  const data: {
-    auth_type: string;
-    requires_verification: boolean;
-    anonymous_user_enabled: boolean | null;
-    password_min_length: number;
-    has_users: boolean;
-    oauth_enabled: boolean;
-  } = await res.json();
+    const data: {
+      auth_type: string;
+      requires_verification: boolean;
+      anonymous_user_enabled: boolean | null;
+      password_min_length: number;
+      has_users: boolean;
+      oauth_enabled: boolean;
+    } = await res.json();
 
-  let authType: AuthType;
+    let authType: AuthType;
 
-  // Override fastapi users auth so we can use both
-  if (NEXT_PUBLIC_CLOUD_ENABLED) {
-    authType = AuthType.CLOUD;
-  } else {
-    authType = data.auth_type as AuthType;
-  }
+    // Override fastapi users auth so we can use both
+    if (NEXT_PUBLIC_CLOUD_ENABLED) {
+      authType = AuthType.CLOUD;
+    } else {
+      authType = data.auth_type as AuthType;
+    }
 
-  // for SAML / OIDC, we auto-redirect the user to the IdP when the user visits
-  // Onyx in an un-authenticated state
-  if (authType === AuthType.OIDC || authType === AuthType.SAML) {
+    // for SAML / OIDC, we auto-redirect the user to the IdP when the user visits
+    // Onyx in an un-authenticated state
+    if (authType === AuthType.OIDC || authType === AuthType.SAML) {
+      return {
+        authType,
+        autoRedirect: true,
+        requiresVerification: data.requires_verification,
+        anonymousUserEnabled: data.anonymous_user_enabled,
+        passwordMinLength: data.password_min_length,
+        hasUsers: data.has_users,
+        oauthEnabled: data.oauth_enabled,
+      };
+    }
     return {
       authType,
-      autoRedirect: true,
+      autoRedirect: false,
       requiresVerification: data.requires_verification,
       anonymousUserEnabled: data.anonymous_user_enabled,
       passwordMinLength: data.password_min_length,
       hasUsers: data.has_users,
       oauthEnabled: data.oauth_enabled,
     };
+  } catch (e) {
+    console.error(`Failed to fetch auth type metadata: ${e}`);
+    // Return default "Open Access" metadata if backend is unreachable
+    return {
+      authType: AuthType.BASIC,
+      autoRedirect: false,
+      requiresVerification: false,
+      anonymousUserEnabled: true,
+      passwordMinLength: 8,
+      hasUsers: false,
+      oauthEnabled: false,
+    };
   }
-  return {
-    authType,
-    autoRedirect: false,
-    requiresVerification: data.requires_verification,
-    anonymousUserEnabled: data.anonymous_user_enabled,
-    passwordMinLength: data.password_min_length,
-    hasUsers: data.has_users,
-    oauthEnabled: data.oauth_enabled,
-  };
 };
 
 const getOIDCAuthUrlSS = async (nextUrl: string | null): Promise<string> => {

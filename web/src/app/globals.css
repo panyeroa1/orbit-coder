@@ -488,8 +488,8 @@ textarea {
     #a3a3a3 100%
   );
   background-size: 200% 100%;
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmerTransition 1.8s ease-out infinite;
 }
@@ -505,8 +505,8 @@ textarea {
     #5c5c5c 100%
   );
   background-size: 200% 100%;
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -558,4 +558,28 @@ textarea {
 
 .container {
   margin-bottom: 1rem;
+}
+
+/* Custom Overlays for App Layout */
+.bg-vignette-overlay {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 4rem),
+    linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 4rem);
+}
+
+.bg-mask-overlay {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black max(0%, calc(50% - 25rem)),
+    black min(100%, calc(50% + 25rem)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black max(0%, calc(50% - 25rem)),
+    black min(100%, calc(50% + 25rem)),
+    transparent 100%
+  );
 }
