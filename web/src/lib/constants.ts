@@ -11,7 +11,7 @@ export const HOST_URL = process.env.WEB_DOMAIN || "http://localhost:3000";
 export const INTERNAL_URL = process.env.INTERNAL_URL || "http://localhost:8080";
 
 // Documentation URLs
-export const DOCS_BASE_URL = "https://docs.onyx.app";
+export const DOCS_BASE_URL = "https://docs.eburon.ai";
 export const DOCS_ADMINS_PATH = `${DOCS_BASE_URL}/admins`;
 
 export const MCP_INTERNAL_URL =
@@ -26,7 +26,7 @@ export const NEXT_PUBLIC_DO_NOT_USE_TOGGLE_OFF_DANSWER_POWERED =
   process.env.NEXT_PUBLIC_DO_NOT_USE_TOGGLE_OFF_DANSWER_POWERED?.toLowerCase() ===
   "true";
 
-export const TENANT_ID_COOKIE_NAME = "onyx_tid";
+export const TENANT_ID_COOKIE_NAME = "eburon_tid";
 
 export const GMAIL_AUTH_IS_ADMIN_COOKIE_NAME = "gmail_auth_is_admin";
 

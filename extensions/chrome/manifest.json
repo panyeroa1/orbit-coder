@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Onyx",
+  "name": "Eburon Coder",
   "version": "1.0",
-  "description": "Onyx lets you research, create, and automate with LLMs powered by your team's unique knowledge",
+  "description": "Eburon Coder lets you research, create, and automate with LLMs powered by your team's unique knowledge",
   "permissions": [
     "sidePanel",
     "storage",

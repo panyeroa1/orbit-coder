@@ -202,38 +202,38 @@ function Header() {
   useEffect(() => {
     const items = showMoveOptions
       ? [
-          <PopoverSearchInput
-            key="search"
-            setShowMoveOptions={setShowMoveOptions}
-            onSearch={setSearchTerm}
-          />,
-          ...filteredProjects.map((project) => (
-            <LineItem
-              key={project.id}
-              icon={SvgFolderIn}
-              onClick={noProp(() => handleMoveClick(project.id))}
-            >
-              {project.name}
-            </LineItem>
-          )),
-        ]
-      : [
+        <PopoverSearchInput
+          key="search"
+          setShowMoveOptions={setShowMoveOptions}
+          onSearch={setSearchTerm}
+        />,
+        ...filteredProjects.map((project) => (
           <LineItem
-            key="move"
+            key={project.id}
             icon={SvgFolderIn}
-            onClick={noProp(() => setShowMoveOptions(true))}
+            onClick={noProp(() => handleMoveClick(project.id))}
           >
-            Move to Project
-          </LineItem>,
-          <LineItem
-            key="delete"
-            icon={SvgTrash}
-            onClick={noProp(() => setDeleteConfirmationModalOpen(true))}
-            danger
-          >
-            Delete
-          </LineItem>,
-        ];
+            {project.name}
+          </LineItem>
+        )),
+      ]
+      : [
+        <LineItem
+          key="move"
+          icon={SvgFolderIn}
+          onClick={noProp(() => setShowMoveOptions(true))}
+        >
+          Move to Project
+        </LineItem>,
+        <LineItem
+          key="delete"
+          icon={SvgTrash}
+          onClick={noProp(() => setDeleteConfirmationModalOpen(true))}
+          danger
+        >
+          Delete
+        </LineItem>,
+      ];
 
     setPopoverItems(items);
   }, [
@@ -386,9 +386,8 @@ function Footer() {
 
   const customFooterContent =
     settings?.enterpriseSettings?.custom_lower_disclaimer_content ||
-    `[Onyx ${
-      settings?.webVersion || "dev"
-    }](https://www.onyx.app/) - Open Source AI Platform`;
+    `[Eburon Coder ${settings?.webVersion || "dev"
+    }](https://www.eburon.ai/) - Open Source AI Platform`;
 
   return (
     <footer
