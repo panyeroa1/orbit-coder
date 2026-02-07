@@ -120,7 +120,7 @@ function AnthropicFormFields(
             </FormField.Control>
             <FormField.Message
               messages={{
-                idle: "This model will be used by Onyx by default.",
+                idle: "This model will be used by Eburon Coder by default.",
                 error: meta.error,
               }}
             />

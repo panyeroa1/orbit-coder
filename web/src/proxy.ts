@@ -70,12 +70,11 @@ export async function proxy(request: NextRequest) {
 
     // Allow access if user has either a regular auth cookie or anonymous user cookie
     if (!authCookie && !anonymousCookie) {
-      // OPEN ACCESS MODIFICATION: Commented out redirect to allow open access
-      // const loginUrl = new URL("/auth/login", request.url);
-      // // Preserve full URL including query params and hash for deep linking
-      // const fullPath = pathname + request.nextUrl.search + request.nextUrl.hash;
-      // loginUrl.searchParams.set("next", fullPath);
-      // return NextResponse.redirect(loginUrl);
+      const loginUrl = new URL("/auth/login", request.url);
+      // Preserve full URL including query params and hash for deep linking
+      const fullPath = pathname + request.nextUrl.search + request.nextUrl.hash;
+      loginUrl.searchParams.set("next", fullPath);
+      return NextResponse.redirect(loginUrl);
     }
   }
 

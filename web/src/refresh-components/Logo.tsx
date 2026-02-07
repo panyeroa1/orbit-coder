@@ -34,7 +34,7 @@ export default function Logo({ folded, size, className }: LogoProps) {
             "aspect-square rounded-full overflow-hidden relative flex-shrink-0",
             className
           )}
-          // eslint-disable-next-line
+          // eslint-disable-next-line react/forbid-dom-props
           style={{ height: foldedSize, width: foldedSize }}
         >
           <Image

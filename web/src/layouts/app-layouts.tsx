@@ -460,11 +460,15 @@ function Root({ children, enableBackground }: AppRootProps) {
     /* NOTE: Some elements, markdown tables in particular, refer to this `@container` in order to
       breakout of their immediate containers using cqw units.
     */
-    <div
-      className={cn(
-        "@container flex flex-col h-full w-full relative overflow-hidden",
-        showBackground && "bg-cover bg-center bg-fixed"
-      )}
+    // eslint-disable-next-line react/forbid-dom-props
+    < div
+      className={
+        cn(
+          "@container flex flex-col h-full w-full relative overflow-hidden",
+          showBackground && "bg-cover bg-center bg-fixed"
+        )
+      }
+      // eslint-disable-next-line react/forbid-dom-props
       style={
         showBackground
           ? { backgroundImage: `url(${appBackgroundUrl})` }
@@ -473,44 +477,26 @@ function Root({ children, enableBackground }: AppRootProps) {
     >
       {/* Effect 1 */}
       {/* Vignette overlay for custom backgrounds (disabled in light mode) */}
-      {showBackground && !isLightMode && (
-        <div
-          className="absolute z-0 inset-0 pointer-events-none"
-          style={{
-            background: `
-              linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 4rem),
-              linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 4rem)
-            `,
-          }}
-        />
-      )}
+      {
+        showBackground && !isLightMode && (
+          <div
+            className="absolute z-0 inset-0 pointer-events-none bg-vignette-overlay"
+          />
+        )
+      }
 
       {/* Effect 2 */}
       {/* Semi-transparent overlay for readability when background is set */}
-      {showBackground && appFocus.isChat() && (
-        <>
-          <div className="absolute inset-0 backdrop-blur-[1px] pointer-events-none" />
-          <div
-            className="absolute z-0 inset-0 backdrop-blur-md transition-all duration-600 pointer-events-none"
-            style={{
-              maskImage: `linear-gradient(
-                to right,
-                transparent 0%,
-                black max(0%, calc(50% - 25rem)),
-                black min(100%, calc(50% + 25rem)),
-                transparent 100%
-              )`,
-              WebkitMaskImage: `linear-gradient(
-                to right,
-                transparent 0%,
-                black max(0%, calc(50% - 25rem)),
-                black min(100%, calc(50% + 25rem)),
-                transparent 100%
-              )`,
-            }}
-          />
-        </>
-      )}
+      {
+        showBackground && appFocus.isChat() && (
+          <>
+            <div className="absolute inset-0 backdrop-blur-[1px] pointer-events-none" />
+            <div
+              className="absolute z-0 inset-0 backdrop-blur-md transition-all duration-600 pointer-events-none bg-mask-overlay"
+            />
+          </>
+        )
+      }
 
       <div className="z-app-layout">
         <Header />
@@ -521,7 +507,7 @@ function Root({ children, enableBackground }: AppRootProps) {
       <div className="z-app-layout">
         <Footer />
       </div>
-    </div>
+    </div >
   );
 }
 

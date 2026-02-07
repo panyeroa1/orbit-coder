@@ -33,8 +33,8 @@ export interface Option {
   label: string | ((currentCredential: Credential<any> | null) => string);
   name: string;
   description?:
-    | string
-    | ((currentCredential: Credential<any> | null) => string);
+  | string
+  | ((currentCredential: Credential<any> | null) => string);
   query?: string;
   optional?: boolean;
   hidden?: boolean;
@@ -151,7 +151,7 @@ export const connectorConfigs: Record<
     values: [
       {
         type: "text",
-        query: "Enter the website URL to scrape e.g. https://docs.onyx.app/:",
+        query: "Enter the website URL to scrape e.g. https://docs.eburon.ai/:",
         label: "Base URL",
         name: "base_url",
         optional: false,
@@ -422,8 +422,8 @@ export const connectorConfigs: Record<
                 label: "Include shared drives?",
                 description: (currentCredential) => {
                   return currentCredential?.credential_json?.google_tokens
-                    ? "This will allow Onyx to index everything in the shared drives you have access to."
-                    : "This will allow Onyx to index everything in your Organization's shared drives.";
+                    ? "This will allow Eburon Coder to index everything in the shared drives you have access to."
+                    : "This will allow Eburon Coder to index everything in your Organization's shared drives.";
                 },
                 name: "include_shared_drives",
                 default: false,
@@ -437,8 +437,8 @@ export const connectorConfigs: Record<
                 },
                 description: (currentCredential) => {
                   return currentCredential?.credential_json?.google_tokens
-                    ? "This will allow Onyx to index everything in your My Drive."
-                    : "This will allow Onyx to index everything in everyone's My Drives.";
+                    ? "This will allow Eburon Coder to index everything in your My Drive."
+                    : "This will allow Eburon Coder to index everything in everyone's My Drives.";
                 },
                 name: "include_my_drives",
                 default: false,
@@ -446,7 +446,7 @@ export const connectorConfigs: Record<
               {
                 type: "checkbox",
                 description:
-                  "This will allow Onyx to index all files shared with you.",
+                  "This will allow Eburon Coder to index all files shared with you.",
                 label: "Include All Files Shared With You?",
                 name: "include_files_shared_with_me",
                 visibleCondition: (values, currentCredential) =>
@@ -514,7 +514,7 @@ export const connectorConfigs: Record<
         type: "checkbox",
         label: "Hide domain link-only files?",
         description:
-          "When enabled, Onyx skips files that are shared broadly (domain or public) but require the link to access.",
+          "When enabled, Eburon Coder skips files that are shared broadly (domain or public) but require the link to access.",
         name: "exclude_domain_link_only",
         optional: true,
         default: false,
@@ -765,7 +765,7 @@ export const connectorConfigs: Record<
                 name: "requested_objects",
                 optional: true,
                 description:
-                  "Specify the Salesforce object types you want us to index. If unsure, don't specify any objects and Onyx will default to indexing by 'Account'." +
+                  "Specify the Salesforce object types you want us to index. If unsure, don't specify any objects and Eburon Coder will default to indexing by 'Account'." +
                   "\n\nHint: Use the singular form of the object name (e.g., 'Opportunity' instead of 'Opportunities').",
               },
             ],
@@ -1830,11 +1830,11 @@ export interface GoogleDriveConfig {
   shared_folder_urls?: string;
 }
 
-export interface GmailConfig {}
+export interface GmailConfig { }
 
-export interface BookstackConfig {}
+export interface BookstackConfig { }
 
-export interface OutlineConfig {}
+export interface OutlineConfig { }
 
 export interface ConfluenceConfig {
   wiki_base: string;
@@ -1886,7 +1886,7 @@ export interface TeamsConfig {
   teams?: string[];
 }
 
-export interface ProductboardConfig {}
+export interface ProductboardConfig { }
 
 export interface SlackConfig {
   workspace: string;
@@ -1898,7 +1898,7 @@ export interface SlabConfig {
   base_url: string;
 }
 
-export interface GuruConfig {}
+export interface GuruConfig { }
 
 export interface GongConfig {
   workspaces?: string[];
@@ -1956,7 +1956,7 @@ export interface ZendeskConfig {
   calls_per_minute?: number;
 }
 
-export interface DropboxConfig {}
+export interface DropboxConfig { }
 
 export interface S3Config {
   bucket_type: "s3";
@@ -1997,15 +1997,15 @@ export interface AsanaConfig {
   asana_team_id?: string;
 }
 
-export interface FreshdeskConfig {}
+export interface FreshdeskConfig { }
 
-export interface FirefliesConfig {}
+export interface FirefliesConfig { }
 
 export interface MediaWikiConfig extends MediaWikiBaseConfig {
   hostname: string;
 }
 
-export interface WikipediaConfig extends MediaWikiBaseConfig {}
+export interface WikipediaConfig extends MediaWikiBaseConfig { }
 
 export interface ImapConfig {
   host: string;
