@@ -305,7 +305,7 @@ google-api-core==2.28.1
     #   google-cloud-core
     #   google-cloud-resource-manager
     #   google-cloud-storage
-google-api-python-client==2.86.0
+google-api-python-client==2.194.0
     # via onyx
 google-auth==2.43.0
     # via
