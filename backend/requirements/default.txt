@@ -882,7 +882,7 @@ pytest-base-url==2.1.0
     # via pytest-playwright
 pytest-mock==3.12.0
     # via onyx
-pytest-playwright==0.7.0
+pytest-playwright==0.7.2
     # via onyx
 python-dateutil==2.8.2
     # via
