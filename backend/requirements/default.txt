@@ -502,7 +502,7 @@ keyring==25.7.0
     # via py-key-value-aio
 kombu==5.5.4
     # via celery
-kubernetes==31.0.0
+kubernetes==35.0.0
     # via onyx
 langchain==0.3.23
     # via onyx
