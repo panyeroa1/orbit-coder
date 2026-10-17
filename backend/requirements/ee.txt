@@ -432,7 +432,7 @@ uvicorn==0.35.0
     #   onyx
 voyageai==0.2.3
     # via onyx
-websocket-client==1.9.0
+websocket-client==1.9.2
     # via kubernetes
 websockets==15.0.1
     # via google-genai
