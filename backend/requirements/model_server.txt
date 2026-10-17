@@ -568,7 +568,7 @@ voyageai==0.2.3
     # via onyx
 wcwidth==0.2.14
     # via prompt-toolkit
-websocket-client==1.9.0
+websocket-client==1.9.2
     # via kubernetes
 websockets==15.0.1
     # via google-genai
